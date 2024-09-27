@@ -37,76 +37,40 @@ vector<string> triplevars(){
             }
         }
     }
-    cout<<counter<<" ";
     return v;
 }
 
-vector<string> sixvars(){
-    vector<string> v1 = triplevars();
-    vector<string> v2 = triplevars();
-    vector<string> res;
-    string v;
-    for(string i : v1){
-        for(string j : v2){
-            if(((i[1] - '0') + (i[2] - '0') + (j[0] - '0') <= 6) && ((j[0] - '0') + (j[1] - '0') + (i[2] - '0') <= 6)){
-                v.push_back(i[0]);
-                v.push_back(i[1]);
-                v.push_back(i[2]);
-                v.push_back(j[0]);
-                v.push_back(j[1]);
-                v.push_back(j[2]);
-                res.push_back(v);
-                v = "";
+int doubles(vector<string> v){
+    vector<int> res;
+    vector<int> ttt;
+    int counter = 0;
+    for(int i = 11;i<=61;i++){
+        for(string j : v){
+            if((i + (j[0] - '0') < 9) && (i%10 + (j[0] - '0') + (j[1] - '0') < 9)){
+                counter++;
             }
         }
+        if(counter == 56){
+            res.push_back(i);
+            }
+            counter = 0;
     }
-    return res;
-}
-
-vector<string> tenwars(){
-    vector<string> v2 = sixvars();
-    vector<string> v1 = triplevars();
-    vector<string> res;
-    vector<string> tres;
-    string v;
-    for(string i : v1){
-        for(string j : v2){
-            if(((i[1] - '0') + (i[2] - '0') + (j[0] - '0') <= 6) && ((j[0] - '0') + (j[1] - '0') + (i[2] - '0') <= 6)){
-                v+=i;
-                v+=j;
-                res.push_back(v);
-                v = "";
+    for(int i : res){
+        for(string j : v){
+            if((i + (j[2] - '0') < 9) && (i/10 + (j[2] - '0') + (j[1] - '0') < 9)){
+                counter++;
             }
         }
-    }
-    for(string i : res){
-        for(char j = '1';j<='6';j++)
-        if((i[7] - '0') + (i[8] - '0') + (j - '0') <= 6){
-            v+=i;
-            v+=j;
-            tres.push_back(v);
-            v="";
-        }
-    }
-    return tres;
-}
-
-int final(){
-    vector<string> v2 = tenwars();
-    vector<string> v1 = tenwars();
-    int res=0;
-
-    for(string i : v1){
-        for(string j : v2){
-            if(((i[8] - '0') + (i[9] - '0') + (j[0] - '0') <= 6) && ((j[0] - '0') + (j[1] - '0') + (i[9] - '0') <= 6)){
-                res+=1;
-                                cout<<1<<endl;
+                    if(counter == 56){
+            res.push_back(i);
             }
-        }
+            counter = 0;
     }
-    return res;
+    int resultat = 0;
+    resultat = 56 * 56 * 56 * 56 * ttt.size() * ttt.size() * ttt.size() * res.size();
+    return resultat;
 }
 
 int main(){
-    cout<<final();
+cout<<doubles(triplevars());
 }
