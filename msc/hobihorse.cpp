@@ -72,7 +72,7 @@ vector<std::pair<int,int>> knightmoves(vector<vector<int>> desk, int line, int c
 }
 
 bool way(int x, int y, vector<vector<int>> &board, int count){
-    if(count == 64){
+    if(count > 39){
         return true;
     }
     vector<std::pair<int,int>> paths =knightmoves(board, x, y);
@@ -100,10 +100,11 @@ int main(){
         {0,0,0,0,0,0,0,0}
     };
     int line = 4; int col = 6;
-    int count = 1;
+    int count = 2;
     // for(std::pair<int,int> i : knightmoves(v,line,col)){
     //     cout<<i.first<<" "<<i.second<<endl;
     // }
+    v[4][6] = 1;
     way(line,col,v,count);
      for(vector<int> i : v){
          for(int j : i){
