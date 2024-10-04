@@ -206,8 +206,8 @@ void fun(int k,int l,int nl){
 }
 
 int main(){
-    int k = 0;
-    int l = 10;
-    int nl=9;
+    int k = 4;
+    int l = 4;
+    int nl=2;
     fun(k,l,nl);
 }
