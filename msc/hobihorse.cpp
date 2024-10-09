@@ -18,7 +18,7 @@ using std::vector;
 using std::min;
 
 bool isvalid(vector<vector<int>> desk, int line, int col){
-    return (0<=line) && (line < 7) && (0<=col) && (col < 7) && (desk[line][col] == 0);
+    return (0<=line) && (line <= 7) && (0<=col) && (col <= 7) && (desk[line][col] == 0);
 }
 
 std::vector<std::pair<int,int>> sorter(std::vector<std::pair<int,int>> moves, std::vector<int> rang){
@@ -71,8 +71,22 @@ vector<std::pair<int,int>> knightmoves(vector<vector<int>> desk, int line, int c
     return overall_possible_moves;
 }
 
+void printboard(vector<vector<int>> v){
+    for(vector<int> i : v){
+        for(int j : i){
+            cout<<j<<"\t";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+}
+
 bool way(int x, int y, vector<vector<int>> &board, int count){
-    if(count > 39){
+    // if(count == 38){
+    //     int q = 0;
+    //     printboard(board);
+    // }
+    if(count >= 64){
         return true;
     }
     vector<std::pair<int,int>> paths =knightmoves(board, x, y);
@@ -100,7 +114,7 @@ int main(){
         {0,0,0,0,0,0,0,0}
     };
     int line = 4; int col = 6;
-    int count = 2;
+    int count = 1;
     // for(std::pair<int,int> i : knightmoves(v,line,col)){
     //     cout<<i.first<<" "<<i.second<<endl;
     // }
