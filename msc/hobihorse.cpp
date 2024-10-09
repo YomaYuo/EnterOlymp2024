@@ -23,7 +23,13 @@ bool isvalid(vector<vector<int>> desk, int line, int col){
 
 std::vector<std::pair<int,int>> sorter(std::vector<std::pair<int,int>> moves, std::vector<int> rang){
     std::vector<std::pair<int,int>> new_moves;
-    for(int i=8; i>=0; i--){
+    int min_rng = 8;
+    for(int i :rang){
+        if(i<min_rng){
+            min_rng=i;
+        }
+    }
+    for(int i=min_rng; i>0; i--){
         for(int j=0; j<rang.size();j++){
             if(rang[j]==i){
                 new_moves.push_back(moves[j]);
@@ -87,6 +93,14 @@ bool way(int x, int y, vector<vector<int>> &board, int count){
     //     printboard(board);
     // }
     if(count >= 64){
+        for(int i= 0;i<=7;i++){
+            for(int j = 0;j<=7;j++){
+                if(board[i][j]==0){
+                    board[i][j]=64;
+                    break;
+                }
+            }
+        }
         return true;
     }
     vector<std::pair<int,int>> paths =knightmoves(board, x, y);
@@ -113,17 +127,12 @@ int main(){
         {0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0}
     };
-    int line = 4; int col = 6;
-    int count = 1;
+    int line = 2; int col = 4;
+    int count = 2;
     // for(std::pair<int,int> i : knightmoves(v,line,col)){
     //     cout<<i.first<<" "<<i.second<<endl;
     // }
-    v[4][6] = 1;
+    v[2][4] = 1;
     way(line,col,v,count);
-     for(vector<int> i : v){
-         for(int j : i){
-            cout<<j<<" ";
-         }
-         cout<<endl;
-     }
+    printboard(v);
 }
