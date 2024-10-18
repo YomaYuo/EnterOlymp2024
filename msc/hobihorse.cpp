@@ -93,14 +93,15 @@ bool way(int x, int y, vector<vector<int>> &board, int count){
     //     printboard(board);
     // }
     if(count >= 64){
-        for(int i= 0;i<=7;i++){
-            for(int j = 0;j<=7;j++){
-                if(board[i][j]==0){
-                    board[i][j]=64;
-                    break;
-                }
-            }
-        }
+        // for(int i= 0;i<=7;i++){
+        //     for(int j = 0;j<=7;j++){
+        //         if(board[i][j]==0){
+        //             board[i][j]=64;
+        //             break;
+        //         }
+        //     }
+        // }
+        
         return true;
     }
     vector<std::pair<int,int>> paths =knightmoves(board, x, y);
